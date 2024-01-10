@@ -94,8 +94,8 @@ function getPasswordOptions() {
   let passwordLength = prompt(
     "Please input the length of password you require below. (At least 8 characters but no more than 128.)"
   );
-  //if the prompt asks user for a number, the user will input a number. To validate the users input with an if statement
-  //so in which case is the answer invalid - if input is not a number, if input is less than 8 || more than 128
+  //prompt user for a number
+  //in which case is the answer invalid - if input is not a number, if input is less than 8 || more than 128
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     //if invalid alert user
     alert("Password entered is invalid.");
@@ -103,13 +103,14 @@ function getPasswordOptions() {
     passwordLength = prompt(
       "Please re-enter password length. (Number must be from 8-128)"
     );
+
     //Confirm Character types
     //Lowercase
     let lowerCase = confirm(`Include lowercase letter?`);
     // Uppercase
     let upperCase = confirm(`Include Uppercase letter?`);
     // Numeric
-    let numeric = confirm(`Include number letter?`);
+    let numeric = confirm(`Include number?`);
     //Special characters ($@%&*, etc)
     let specialChar = confirm(`Include special character ($@%&*, etc)?`);
 
@@ -123,33 +124,32 @@ function getPasswordOptions() {
       // Uppercase
       upperCase = confirm(`Include Uppercase letter?`);
       // Numeric
-      numeric = confirm(`Include number letter?`);
+      numeric = confirm(`Include number?`);
       //Special characters ($@%&*, etc)
       specialChar = confirm(`Include special character ($@%&*, etc)?`);
     }
+
     var returnValue = {
-      length: passwordLength,
+      length: Number(passwordLength),
       lowerCase: lowerCase,
       numeric: numeric,
       upperCase: upperCase,
       specialChar: specialChar,
     };
-    return returnValue;
-    //if statement
+
     //if lowercase, merge lowecaseArry to allCharARR
     //if uppercase, merge uppercaseArry to allCharARR
     //same for the other 2
   }
+  return returnValue;
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  // for (let i = 0; i < 2; i++) {
   let randomIndex = Math.floor(Math.random() * arr.length);
   //get randomValue
-  randomIndex = arr[randomIndex];
+  return arr[randomIndex];
   //add that value to password
-  // }
 }
 
 // Function to generate password with user input
@@ -158,15 +158,31 @@ function getRandom(arr) {
 //if lowercase can generate char w/in condition
 function generatePassword() {
   //run random
-  var password = "";
+  var passWord = "";
   var options = getPasswordOptions();
+  var allCharARR = [];
 
   if (options.lowerCase) {
-    // for (let i = 0; i < l; i++) {
-    //   const element = array[i];
-    // }
+    allCharARR = allCharARR.concat(lowerCasedCharacters);
   }
-  return password;
+  if (options.numeric) {
+    allCharARR = allCharARR.concat(numericCharacters);
+  }
+  if (options.upperCase) {
+    allCharARR = allCharARR.concat(upperCasedCharacters);
+  }
+  if (options.specialChar) {
+    allCharARR = allCharARR.concat(specialCharacters);
+  }
+
+  if (allCharARR.length === 0) {
+    alert("Please select at least one character set");
+    return "";
+  }
+  for (let i = 0; i < options.length; i++) {
+    passWord += getRandom(allCharARR);
+  }
+  return passWord;
 }
 
 // Get references to the #generate element
@@ -184,4 +200,4 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 //create a random password from the input they give
-//take random elements from the 4 arr given,if they fall under the elements they want
+//take random elements from the 4 arr given, if they fall under the elements they want
