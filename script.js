@@ -91,21 +91,17 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   //prompt password length
-  let passwordCriteria = prompt(
-    "Length of password (At least 8 characters but no more than 128.)"
+  let passwordLength = prompt(
+    "Please input the length of password you require below. (At least 8 characters but no more than 128.)"
   );
-  //if the prompt asks uses for a number, the user will input a number. Then I need to validate the users input with an if statement
+  //if the prompt asks user for a number, the user will input a number. To validate the users input with an if statement
   //so in which case is the answer invalid - if input is not a number, if input is less than 8 || more than 128
-  while (
-    passwordCriteria < 8 ||
-    passwordCriteria > 128 ||
-    isNaN(passwordCriteria)
-  ) {
+  while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     //if invalid alert user
     alert("Password entered is invalid.");
     //prompt again
-    passwordCriteria = prompt(
-      "Please re-enter password length. Number from 8-128)"
+    passwordLength = prompt(
+      "Please re-enter password length. (Number must be from 8-128)"
     );
   }
 
@@ -119,11 +115,11 @@ function getPasswordOptions() {
   //Special characters ($@%&*, etc)
   let specialChar = confirm(`Include special character ($@%&*, etc)?`);
 
-  //need yes for at least one of them
+  //need true for at least one of them
   //invalid confirm: if all 4 = false
   while (!lowerCase && !upperCase && !numeric && !specialChar) {
     alert(
-      "Atleast one of the characters must be: lowercase, uppercase, special character or number"
+      "Atleast one of the characters must be: lowercase, uppercase, special character ($@%&*, etc) or number"
     );
     lowerCase = confirm(`Include lowercase letter?`);
     // Uppercase
@@ -133,7 +129,14 @@ function getPasswordOptions() {
     //Special characters ($@%&*, etc)
     specialChar = confirm(`Include special character ($@%&*, etc)?`);
   }
-
+  var returnValue = {
+    length: passwordLength,
+    lowerCase: lowerCase,
+    numeric: numeric,
+    upperCase: upperCase,
+    specialChar: specialChar,
+  };
+  return returnValue;
   //if statement
   //if lowercase, merge lowecaseArry to allCharARR
   //if uppercase, merge uppercaseArry to allCharARR
@@ -153,7 +156,12 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var password = "";
-  getPasswordOptions();
+  var options = getPasswordOptions();
+  if (options.lowerCase) {
+    for (let i = 0; i < l; i++) {
+      const element = array[i];
+    }
+  }
   return password;
 }
 
@@ -170,3 +178,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+//create a random password from the input they give
+//take random elements from the 4 arr given if they fall under the elements they want
