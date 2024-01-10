@@ -103,64 +103,68 @@ function getPasswordOptions() {
     passwordLength = prompt(
       "Please re-enter password length. (Number must be from 8-128)"
     );
-  }
-
-  //Confirm Character types
-  //Lowercase
-  let lowerCase = confirm(`Include lowercase letter?`);
-  // Uppercase
-  let upperCase = confirm(`Include Uppercase letter?`);
-  // Numeric
-  let numeric = confirm(`Include number letter?`);
-  //Special characters ($@%&*, etc)
-  let specialChar = confirm(`Include special character ($@%&*, etc)?`);
-
-  //need true for at least one of them
-  //invalid confirm: if all 4 = false
-  while (!lowerCase && !upperCase && !numeric && !specialChar) {
-    alert(
-      "Atleast one of the characters must be: lowercase, uppercase, special character ($@%&*, etc) or number"
-    );
-    lowerCase = confirm(`Include lowercase letter?`);
+    //Confirm Character types
+    //Lowercase
+    let lowerCase = confirm(`Include lowercase letter?`);
     // Uppercase
-    upperCase = confirm(`Include Uppercase letter?`);
+    let upperCase = confirm(`Include Uppercase letter?`);
     // Numeric
-    numeric = confirm(`Include number letter?`);
+    let numeric = confirm(`Include number letter?`);
     //Special characters ($@%&*, etc)
-    specialChar = confirm(`Include special character ($@%&*, etc)?`);
+    let specialChar = confirm(`Include special character ($@%&*, etc)?`);
+
+    //need true for at least one of them
+    //invalid confirm: if all 4 = false
+    while (!lowerCase && !upperCase && !numeric && !specialChar) {
+      alert(
+        "Atleast one of the characters must be: lowercase, uppercase, special character ($@%&*, etc) or number"
+      );
+      lowerCase = confirm(`Include lowercase letter?`);
+      // Uppercase
+      upperCase = confirm(`Include Uppercase letter?`);
+      // Numeric
+      numeric = confirm(`Include number letter?`);
+      //Special characters ($@%&*, etc)
+      specialChar = confirm(`Include special character ($@%&*, etc)?`);
+    }
+    var returnValue = {
+      length: passwordLength,
+      lowerCase: lowerCase,
+      numeric: numeric,
+      upperCase: upperCase,
+      specialChar: specialChar,
+    };
+    return returnValue;
+    //if statement
+    //if lowercase, merge lowecaseArry to allCharARR
+    //if uppercase, merge uppercaseArry to allCharARR
+    //same for the other 2
   }
-  var returnValue = {
-    length: passwordLength,
-    lowerCase: lowerCase,
-    numeric: numeric,
-    upperCase: upperCase,
-    specialChar: specialChar,
-  };
-  return returnValue;
-  //if statement
-  //if lowercase, merge lowecaseArry to allCharARR
-  //if uppercase, merge uppercaseArry to allCharARR
-  //same for the other 2
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  for (let i = 0; i < array.length; i++) {
-    let randomIndex = Math.floor(Math.random() * arr.length);
-    //get randomValue
-
-    //add that value to password
-  }
+  // for (let i = 0; i < 2; i++) {
+  let randomIndex = Math.floor(Math.random() * arr.length);
+  //get randomValue
+  randomIndex = arr[randomIndex];
+  //add that value to password
+  // }
 }
 
 // Function to generate password with user input
+//with options need to create the string
+//discern what arr will be used
+//if lowercase can generate char w/in condition
 function generatePassword() {
+  //run random
   var password = "";
   var options = getPasswordOptions();
+
   if (options.lowerCase) {
-    for (let i = 0; i < l; i++) {
-      const element = array[i];
-    }
+    // for (let i = 0; i < l; i++) {
+    //   const element = array[i];
+    // }
   }
   return password;
 }
@@ -180,4 +184,4 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 //create a random password from the input they give
-//take random elements from the 4 arr given if they fall under the elements they want
+//take random elements from the 4 arr given,if they fall under the elements they want
