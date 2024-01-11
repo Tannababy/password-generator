@@ -1,4 +1,12 @@
-# password-generator
+# Password-generator 🔐
+
+## Deployed Website
+
+https://tannababy.github.io/password-generator/
+
+# Installation
+
+N/A
 
 ## Description
 
@@ -11,9 +19,11 @@ Below is a screenshot of the mockup.
 
 ## Usage
 
-The purpose of this app is to run in the browser and allow employees to generate a random password based on criteria they’ve selected. The password can include special characters.Below is the link to the application.
+The purpose of this app is to run in the browser and allow employees to generate a random password based on criteria selected from the options provided. The user is prompted to choose the password length within a given range, followed by a series of password criteria that will be used to randomly geerate a new password each time.
 
-http://127.0.0.1:5501/index.html
+## Credits
+
+Overall guidance and provision of necessary materials for this challenge from the EdX Front-End Web Development Bootcamp instructor and teaching assistants (Oct2023 Cohort).
 
 ## License
 
