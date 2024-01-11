@@ -90,57 +90,60 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  //prompt password length
-  let passwordLength = prompt(
-    "Please input the length of password you require below. (At least 8 characters but no more than 128.)"
-  );
-  //prompt user for a number
-  //in which case is the answer invalid - if input is not a number, if input is less than 8 || more than 128
-  while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
-    //if invalid alert user
-    alert("Password entered is invalid.");
-    //prompt again
-    passwordLength = prompt(
-      "Please re-enter password length. (Number must be from 8-128)"
+  var returnValue; // Initialize returnValue outside of the loops
+  var isValidInput = false;
+
+  while (!isValidInput) {
+    //prompt password length
+    let passwordLength = prompt(
+      "Please input the length of password you require below. (At least 8 characters but no more than 128.)"
     );
 
-    //Confirm Character types
-    //Lowercase
+    //prompt user for a number
+    //in which case is the answer invalid - if input is not a number, if input is less than 8 || more than 128
+    while (
+      passwordLength < 8 ||
+      passwordLength > 128 ||
+      isNaN(passwordLength)
+    ) {
+      //if invalid alert user
+      alert("Password entered is invalid.");
+      //prompt again
+      passwordLength = prompt(
+        "Please re-enter password length. (Number must be from 8-128)"
+      );
+    }
+
+    // Confirm Character types
+    // Lowercase
     let lowerCase = confirm(`Include lowercase letter?`);
     // Uppercase
     let upperCase = confirm(`Include Uppercase letter?`);
     // Numeric
     let numeric = confirm(`Include number?`);
-    //Special characters ($@%&*, etc)
+    // Special characters ($@%&*, etc)
     let specialChar = confirm(`Include special character ($@%&*, etc)?`);
 
-    //need true for at least one of them
-    //invalid confirm: if all 4 = false
-    while (!lowerCase && !upperCase && !numeric && !specialChar) {
+    // need true for at least one of them
+    // invalid confirm: if all 4 = false
+    if (!lowerCase && !upperCase && !numeric && !specialChar) {
       alert(
-        "Atleast one of the characters must be: lowercase, uppercase, special character ($@%&*, etc) or number"
+        "At least one of the characters must be: lowercase, uppercase, special character ($@%&*, etc), or number"
       );
-      lowerCase = confirm(`Include lowercase letter?`);
-      // Uppercase
-      upperCase = confirm(`Include Uppercase letter?`);
-      // Numeric
-      numeric = confirm(`Include number?`);
-      //Special characters ($@%&*, etc)
-      specialChar = confirm(`Include special character ($@%&*, etc)?`);
+    } else {
+      // Create an object with the selected options
+      returnValue = {
+        length: Number(passwordLength),
+        lowerCase: lowerCase,
+        numeric: numeric,
+        upperCase: upperCase,
+        specialChar: specialChar,
+      };
+      isValidInput = true;
     }
-
-    var returnValue = {
-      length: Number(passwordLength),
-      lowerCase: lowerCase,
-      numeric: numeric,
-      upperCase: upperCase,
-      specialChar: specialChar,
-    };
-
-    //if lowercase, merge lowecaseArry to allCharARR
-    //if uppercase, merge uppercaseArry to allCharARR
-    //same for the other 2
   }
+
+  // Return the object only after successfully getting valid inputs
   return returnValue;
 }
 
