@@ -15,7 +15,7 @@ In this week's challenge :star_struck:, we were tasked with creating an applicat
 Below is a screenshot of the mockup.
 <br>
 <br>
-![Gif of app demonstration](./assets/images/Demo-gif.mp4)
+![Gif of app demonstration](./assets/images/DemoGif.gif)
 
 ## Usage
 
